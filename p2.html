@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mazdi Hassan | Kathuray Furnishers</title>
+    <style>
+        :root {
+            --primary-color: #d4af37;
+            --secondary-color: #f9f3e3;
+            --text-color: #4a4a4a;
+            --accent-color: #8b7b57;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Playfair Display', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background-color: var(--secondary-color);
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+        
+        .profile-card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: flex;
+            margin: 40px 0;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .profile-card:hover {
+            transform: translateY(-5px);
+        }
+        
+
+
+.profile-image {
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+        
+        .profile-info {
+            padding: 40px;
+            flex-grow: 1;
+        }
+        
+        h1, h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .section {
+            margin-bottom: 60px;
+            position: relative;
+            padding-left: 40px;
+            background-color: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .section::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+            border-radius: 3px;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+        
+        .timeline-item {
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -43px;
+            top: 4px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            box-shadow: 0 0 0 5px rgba(212, 175, 55, 0.3);
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+.gallery-item {
+    background-color: var(--secondary-color);
+    height: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+        
+        .gallery-item::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.4), rgba(241, 196, 15, 0.4));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--primary-color), #f1c40f);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+
+        .footer-wave svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 150px;
+        }
+
+        .footer-wave .shape-fill {
+            fill: var(--secondary-color);
+        }
+        
+        @media (max-width: 768px) {
+    .profile-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1.5rem;
+    }
+
+    .profile-image {
+        width: 300px;
+        height: 300px;
+        margin-bottom: 1rem;
+        border-radius: 15px;
+    }
+            
+            .section {
+                padding: 30px;
+            }            
+        }
+
+
+
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#loading-screen img {
+    width: 500px; /* Adjust as needed */
+    height: auto;
+}
+
+@media (max-width: 768px) {
+#loading-screen img {
+    width: 300px; /* Adjust as needed */
+    height: auto;
+}
+}
+        
+        @font-face {
+            font-family: 'Playfair Display';
+            src: url('https://fonts.gstatic.com/s/playfairdisplay/v25/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDXbtXK-F2qC0s.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+.navbar {
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: var(--box-shadow-light);
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  transition: all var(--transition-medium);
+  backdrop-filter: blur(10px);
+  font-family: "Roboto", sans-serif;
+
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo img {
+  height: 120px;
+  transition: var(--transition-medium);
+}
+
+.logo img:hover {
+  transform: scale(1.05);
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+}
+
+.nav-link {
+  color: var(--text-color);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: var(--transition-medium);
+  position: relative;
+  font-weight: 500;
+}
+
+.nav-link:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--secondary-color);
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.nav-link:hover {
+  color: var(--dark-gold);
+}
+
+.nav-link:hover:before {
+  visibility: visible;
+  transform: scaleX(1);
+}
+
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+  order: 1;
+  margin-right: 1rem;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  transition: all 0.3s ease-in-out;
+  background-color: var(--text-color);
+}
+
+@media screen and (max-width: 1024px) {
+  .nav-menu {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-links h4::after,
+  .footer-newsletter h4::after,
+  .footer-social h4::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media print {
+  .navbar,
+  footer {
+    display: none;
+  }
+}
+
+/* Custom Scrollbar Styles */
+/* Advanced Gold Scrollbar Styles */
+:root {
+  --scrollbar-primary: #FFD700;
+  --scrollbar-secondary: #FFA500;
+  --scrollbar-tertiary: #B8860B;
+  --scrollbar-bg: #2C2C2C;
+  --scrollbar-hover: #DAA520;
+}
+
+/* Webkit browsers (Chrome, Safari, newer versions of Opera) */
+::-webkit-scrollbar {
+  width: 16px;
+  background: 
+    linear-gradient(90deg, var(--scrollbar-bg) 0%, var(--scrollbar-bg) 25%, 
+    var(--scrollbar-tertiary) 25%, var(--scrollbar-tertiary) 30%, 
+    var(--scrollbar-bg) 30%, var(--scrollbar-bg) 70%, 
+    var(--scrollbar-tertiary) 70%, var(--scrollbar-tertiary) 75%, 
+    var(--scrollbar-bg) 75%, var(--scrollbar-bg) 100%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: 
+    linear-gradient(0deg, var(--scrollbar-primary) 0%, var(--scrollbar-secondary) 50%, var(--scrollbar-primary) 100%);
+  border: 2px solid var(--scrollbar-bg);
+  border-radius: 8px;
+  box-shadow: 
+    inset 0 0 6px rgba(0, 0, 0, 0.3),
+    0 0 6px rgba(255, 215, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: 
+    linear-gradient(0deg, var(--scrollbar-hover) 0%, var(--scrollbar-secondary) 50%, var(--scrollbar-hover) 100%);
+}
+
+::-webkit-scrollbar-button {
+  background: var(--scrollbar-tertiary);
+  border: 2px solid var(--scrollbar-bg);
+  border-radius: 4px;
+  height: 16px;
+}
+
+::-webkit-scrollbar-button:hover {
+  background: var(--scrollbar-hover);
+}
+
+::-webkit-scrollbar-button:vertical:start:decrement {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23FFD700'%3E%3Cpath d='M8 4l4 4H4z'/%3E%3C/svg%3E");
+}
+
+::-webkit-scrollbar-button:vertical:end:increment {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23FFD700'%3E%3Cpath d='M4 8l4 4 4-4z'/%3E%3C/svg%3E");
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-primary) var(--scrollbar-bg);
+}
+
+/* For other browsers and to ensure consistency */
+body {
+  overflow-y: overlay;
+}
+
+/* Custom scrollbar track */
+body::-webkit-scrollbar-track {
+  background: var(--scrollbar-bg);
+  border: 1px solid var(--scrollbar-tertiary);
+  border-radius: 8px;
+}
+
+/* Scrollbar corner */
+::-webkit-scrollbar-corner {
+  background: var(--scrollbar-bg);
+  border-top: 1px solid var(--scrollbar-tertiary);
+  border-left: 1px solid var(--scrollbar-tertiary);
+}
+
+/* Subtle animation on hover */
+::-webkit-scrollbar-thumb:hover {
+  animation: gold-pulse 1.5s infinite alternate;
+}
+
+@keyframes gold-pulse {
+  0% {
+    box-shadow: 
+      inset 0 0 6px rgba(0, 0, 0, 0.3),
+      0 0 6px rgba(255, 215, 0, 0.5);
+  }
+  100% {
+    box-shadow: 
+      inset 0 0 10px rgba(0, 0, 0, 0.5),
+      0 0 12px rgba(255, 215, 0, 0.8);
+  }
+}
+
+    </style>
+</head>
+<body>
+<div id="loading-screen">
+    <img src="images/loader.gif" alt="Loading..." />
+</div>
+    <header>
+<nav class="navbar">
+    <div class="container navbar-container">
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <div class="logo">
+            <img src="images/logo.png" alt="Kathuray Furnishers Logo">
+        </div>
+        <ul class="nav-menu">
+            <li><a href="index.html#home" class="nav-link">Home</a></li>
+            <li><a href="index.html#catalogue" class="nav-link">Catalogue</a></li>
+            <li><a href="index.html#about" class="nav-link">About Us</a></li>
+            <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+    </header>
+<div class="sidebar">
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#catalogue">Catalogue</a></li>
+    <li><a href="#about">About Us</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</div>
+    
+    <div class="container">
+        <div class="profile-card">
+            <div class="profile-image">
+                <img src="images/d198nd9w187.png" alt="Mazdi Hasan">
+        </div>
+            <div class="profile-info">
+                <h2>Mazdi Hasan</h2>
+                <p>Co-Founder & Creative Visionary at Kathuray Furnishers</p>
+                <p><strong>Birth:</strong> June 11, ####, Barisal, Bangladesh</p>
+                <p><strong>Nationality:</strong> Bangladeshi</p>
+                <p><strong>Education:</strong> Jahanara Israil School & College, Barisal</p>
+                <p><strong>Role:</strong> Co-Founder</p>
+                <p><strong>Known for:</strong> Innovative design practices at the company</p>
+            </div>
+        </div>
+        
+        <div id="about" class="section">
+            <h2>About</h2>
+            <p>Mazdi Hasan, born June 11 ####, co-founded Kathuray Furnishers in 2017 and has played a vital role in the company's growth since its inception. As a young Bangladeshi entrepreneur, he oversees multiple aspects of the business, including architectural design of retail locations, staff management, e-commerce operations, and international franchise development. Currently a student of Jahanara Israil School & College in Barisal, Mazdi has established himself as an innovative designer and strategic thinker in the furniture industry.</p>
+        </div>
+        
+        <div id="career" class="section">
+            <h2>Journey</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>2014 - Early Beginnings</h3>
+                    <p>Enrolled for education at JISC Campus. Conceptualized initial showroom design for company</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2018 - Staff Management</h3>
+                    <p>Implemented effective staff team management strategies</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2021 - E-Commerce Expansion</h3>
+                    <p>Imposed digital marketing strategies to increase brand visibility of Kathuray Furnishers</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2022 - Global Expansion</h3>
+                    <p>Took responsibility for the architectural design of company's retail locations</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="innovations" class="section">
+            <h2>Career</h2>
+            <p>• Mazdi was responsible for overseeing the management and design of our company’s social media operations and has earned numerous recognition due to his innovative strategies.</p>
+            <p>• During the pandemic, Kathuray Furnishers established a restaurant business, where Mazdi served as the head responsible for managing the customer support team, overseeing food inspections, and maintaining the restaurant's environment. However, the venture was later discontinued as the company shifted its focus towards developing other brands and expanding the parent company's branches.
+        </div>
+        
+        <div id="gallery" class="section">
+            <h2>Gallery</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="images/about-image.png" alt="Our Annual company Meeting">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/dnqwindiwqdiqndsa.jpg" alt="Recieveing an Official Certificate">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/ejd9nhdw13.jpg" alt="Staff team of Kathuray Furnishers">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2017 Kathuray Furnishers. All rights reserved.</p>
+        </div>
+        <div class="footer-wave">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
+    </footer>
+<script src="functions/functions.js"></script>
+</body>
+</html>

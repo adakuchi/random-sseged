@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  :root {
+    --gp-primary: #1B89C7;
+    --gp-secondary: #00A3E0;
+    --partner-gold: #D4AF37;
+    --partner-gold-light: #F4C460;
+    --neutral-50: #FAFAFA;
+    --neutral-100: #F5F5F5;
+    --neutral-200: #E5E5E5;
+    --text-primary: #1A1A1A;
+    --text-secondary: #4A4A4A;
+    --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 12px 24px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 24px 48px rgba(0, 0, 0, 0.08);
+  }
+
+  .enterprise-partnership {
+    position: relative;
+    background: linear-gradient(135deg, var(--neutral-50) 0%, white 100%);
+    min-height: 100vh;
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  .subtle-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      linear-gradient(45deg, var(--neutral-100) 25%, transparent 25%),
+      linear-gradient(-45deg, var(--neutral-100) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, var(--neutral-100) 75%),
+      linear-gradient(-45deg, transparent 75%, var(--neutral-100) 75%);
+    background-size: 20px 20px;
+    opacity: 0.3;
+  }
+
+  .partnership-content {
+    position: relative;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 120px 40px;
+  }
+
+  .enterprise-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 120px;
+    position: relative;
+  }
+
+  .logo-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .logo-container {
+    position: relative;
+    padding: 40px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+  }
+
+  .logo-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, 
+      var(--gp-primary), 
+      var(--partner-gold-light)
+    );
+  }
+
+  .company-logo {
+    width: 300px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+  }
+
+  .partnership-symbol {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .partnership-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+      var(--gp-primary),
+      var(--partner-gold-light)
+    );
+    transform-origin: center;
+    animation: lineExpand 1.5s ease-out forwards;
+  }
+
+  .partnership-announcement {
+    text-align: center;
+    margin: 80px 0;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s ease-out 0.5s forwards;
+  }
+
+  .announcement-label {
+    display: inline-block;
+    padding: 12px 24px;
+    background: white;
+    border-radius: 50px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .announcement-title {
+    font-size: 3.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.2;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg,
+      var(--gp-primary),
+      var(--partner-gold-light)
+    );
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .announcement-description {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .partnership-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 80px;
+  }
+
+  .metric-card {
+    background: white;
+    border-radius: 12px;
+    padding: 40px;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+  }
+
+  .metric-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .metric-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .metric-value {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    background: linear-gradient(135deg,
+      var(--gp-primary),
+      var(--partner-gold-light)
+    );
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .metric-label {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  @keyframes lineExpand {
+    0% { transform: scaleX(0); opacity: 0; }
+    100% { transform: scaleX(1); opacity: 1; }
+  }
+
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .enterprise-header {
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .partnership-symbol {
+      width: 100%;
+      height: 60px;
+    }
+
+    .announcement-title {
+      font-size: 2.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .partnership-metrics {
+      grid-template-columns: 1fr;
+    }
+
+    .partnership-content {
+      padding: 80px 20px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<section class="enterprise-partnership">
+  <div class="subtle-pattern"></div>
+  
+  <div class="partnership-content">
+    <header class="enterprise-header">
+      <div class="logo-wrapper">
+        <div class="logo-container">
+          <img src="images/logo.png" alt="Company Logo" class="company-logo" width="666" height="375">
+        </div>
+      </div>
+
+      <div class="partnership-symbol">
+        <div class="partnership-line"></div>
+      </div>
+
+<div class="logo-wrapper">
+  <div class="logo-container">
+    <img src="images/gp.png" alt="Grameenphone Logo" class="company-logo" style="width: auto; height: auto;">
+  </div>
+</div>
+    </header>
+
+    <div class="partnership-announcement">
+      <div class="announcement-label">Official Partnership</div>
+      <h1 class="announcement-title">Advancing Digital Innovation Together</h1>
+      <p class="announcement-description">
+        A landmark collaboration between industry leaders, combining cutting-edge technology 
+        and telecommunications expertise to deliver unprecedented value and innovation 
+        to our stakeholders.
+      </p>
+    </div>
+
+    <div class="partnership-metrics">
+      <div class="metric-card">
+        <div class="metric-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+        </div>
+        <div class="metric-value">$250M+</div>
+        <div class="metric-label">Joint Market Value Created</div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v6l4 2"/>
+          </svg>
+        </div>
+        <div class="metric-value">5+ Years</div>
+        <div class="metric-label">Strategic Collaboration</div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div class="metric-value">100M+</div>
+        <div class="metric-label">Customers Impacted</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Intersection Observer for animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.2
+  });
+
+  // Observe metric cards
+  document.querySelectorAll('.metric-card').forEach((card, index) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transitionDelay = `${index * 0.2}s`;
+    card.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+    observer.observe(card);
+  });
+
+  // Subtle parallax effect on scroll
+  window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    document.querySelectorAll('.logo-container').forEach(container => {
+      container.style.transform = `translateY(${scrolled * 0.05}px)`;
+    });
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kathuray Furnishers | Exquisite Luxury</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap');
+
+:root {
+  --primary: #fff9e6;
+  --secondary: #d4af37;
+  --text: #333;
+  --primary-light: #fff;
+  --primary-dark: #aa8b2b;
+  --transition-slow: 0.5s ease;
+  --transition-medium: 0.3s ease;
+  --transition-fast: 0.2s ease;
+  --box-shadow-light: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --box-shadow-medium: 0 4px 15px rgba(0, 0, 0, 0.15);
+  --box-shadow-heavy: 0 8px 30px rgba(0, 0, 0, 0.2);
+  --text-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
+  --light-gold: #f6e27a;
+  --dark-gold: #aa8b2b;
+}
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--primary-light);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            color: var(--text);
+        }
+
+        /* Animated background */
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .animated-bg::before,
+        .animated-bg::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.2);
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .animated-bg::before {
+            top: -150px;
+            left: -150px;
+        }
+
+        .animated-bg::after {
+            bottom: -150px;
+            right: -150px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(100px, 100px); }
+        }
+
+        /* Timeline Section */
+        .timeline {
+            position: relative;
+            padding: 4rem 0;
+        }
+
+.timeline h2 {
+    text-align: right;
+    padding-right: 2rem;
+    margin-bottom: 3rem;
+}
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: var(--secondary);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            margin-bottom: 4rem;
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: calc(50% - 3rem);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background: var(--secondary);
+            border-radius: 50%;
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            left: calc(50% - 10px);
+        }
+
+        .timeline-item:nth-child(even)::before {
+            right: calc(50% - 10px);
+        }
+
+        /* Feature Comparison */
+        .feature-comparison {
+            padding: 4rem 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 1rem;
+        }
+
+        .feature-table th,
+        .feature-table td {
+            padding: 1rem;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-table th {
+            background: var(--secondary);
+            color: var(--primary-light);
+        }
+
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#loading-screen img {
+    width: 500px; /* Adjust as needed */
+    height: auto;
+}
+
+@media (max-width: 768px) {
+
+#loading-screen img {
+    width: 300px; /* Adjust as needed */
+    height: auto;
+}
+}
+
+
+        /* Testimonials */
+        .testimonial-section {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        .testimonial-carousel {
+            position: relative;
+            overflow: hidden;
+            height: 400px;
+        }
+
+        .testimonial-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-slide.active {
+            opacity: 1;
+        }
+
+        .testimonial-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid #d4af37;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .testimonial-author {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #2c3e50;
+        }
+
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .carousel-nav button {
+            background-color: #d4af37;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .carousel-nav button:hover {
+            background-color: #b8960c;
+        }
+
+        @media (max-width: 768px) {
+            .testimonial-section {
+                padding: 10px;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .testimonial-carousel {
+                height: 450px;
+            }
+
+            .testimonial-text {
+                font-size: 1rem;
+            }
+        }
+
+footer {
+  background-color: #f9f9f9;
+  padding: 6rem 0 3rem;
+  margin-top: 6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(to right, var(--light-gold), var(--dark-gold));
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+
+.footer-logo img {
+  height: 100px;
+  transition: all var(--transition-medium);
+}
+
+.footer-logo img:hover {
+  transform: scale(1.05);
+}
+
+.footer-links h4,
+.footer-newsletter h4,
+.footer-social h4 {
+  color: var(--dark-gold);
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-links h4::after,
+.footer-newsletter h4::after,
+.footer-social h4::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background: var(--dark-gold);
+}
+
+.footer-links ul {
+  list-style: none;
+}
+
+.footer-links a {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color var(--transition-medium);
+  display: inline-block;
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+}
+
+.footer-links a:hover {
+  color: var(--dark-gold);
+  transform: translateX(5px);
+}
+
+.newsletter-form {
+  display: flex;
+}
+
+.newsletter-form input {
+  flex-grow: 1;
+  padding: 0.8rem;
+  border: 1px solid var(--dark-gold);
+  border-radius: 8px 0 0 8px;
+  font-size: 1rem;
+}
+
+.newsletter-form button {
+  background: linear-gradient(
+    135deg,
+    var(--light-gold) 0%,
+    var(--dark-gold) 100%
+  );
+  color: var(--primary-color);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  transition: all var(--transition-medium);
+  border-radius: 0 8px 8px 0;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.newsletter-form button:hover {
+  background: var(--hover-color);
+  transform: translateX(3px);
+}
+
+.footer-social {
+  text-align: center;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.social-icons a {
+  color: var(--dark-gold);
+  font-size: 1.8rem;
+  transition: all var(--transition-medium);
+  background-color: var(--light-gold);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.social-icons a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--dark-gold);
+  transition: all var(--transition-medium);
+  transform: scale(0);
+  z-index: -1;
+}
+
+.social-icons a:hover::before {
+  transform: scale(1);
+}
+
+.social-icons a:hover {
+  color: var(--primary-color);
+  transform: translateY(-5px) rotate(360deg);
+  box-shadow: var(--box-shadow-medium);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e0e0e0;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .timeline::before {
+                left: 2rem;
+            }
+
+            .timeline-content {
+                width: calc(100% - 4rem);
+                margin-left: 4rem !important;
+            }
+
+            .timeline-item::before {
+                left: 2rem !important;
+            }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-links h4::after,
+  .footer-newsletter h4::after,
+  .footer-social h4::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+        }
+    </style>
+</head>
+<body>
+<div id="loading-screen">
+    <img src="images/loader.gif" alt="Loading..." />
+</div>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="animated-bg"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Our Purchase process</h1>
+                    <p>Experience the seamless journey of bringing our luxurious pieces into your home</p>
+                    <a href="index.html#catalogue" class="cta-button">View Catalogue</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="process" class="timeline">
+            <div class="container">
+               <h2>Online Purchase Process</h2>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Capture Your Favorite</h3>
+                        <p>Take a screenshot of the product you love or note down its ID, conveniently located below each product image.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Connect on Facebook</h3>
+                        <p>Visit our Facebook page through the icon in the website footer and send us your selection.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Request Price</h3>
+                        <p>Simply type "pp" or "price?" and our support team will respond promptly with pricing details.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Finalize Your Order</h3>
+                        <p>For further discussion and to complete your order, call us at +880 1731-179817.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="comparison" class="feature-comparison">
+            <div class="container">
+                <h2>Why Choose Kathuray Furnishers?</h2>
+                <table class="feature-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Kathuray Furnishers</th>
+                            <th>Industry Standard</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Craftsmanship</td>
+                            <td>Artisanal Excellence</td>
+                            <td>Mass Production</td>
+                        </tr>
+                        <tr>
+                            <td>Customization Options</td>
+                            <td>Extensive Opitions</td>
+                            <td>Limited Choices</td>
+                        </tr>
+                        <tr>
+                            <td>Materials</td>
+                            <td>Premium Selection</td>
+                            <td>Standard Grade</td>
+                        </tr>
+                        <tr>
+                            <td>Customer Support</td>
+                            <td>24/7 Dedicated Support</td>
+                            <td>Business hours only</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    <section class="testimonial-section">
+        <h2>What Our Esteemed Clients Say</h2>
+        <div class="testimonial-carousel">
+            <div class="testimonial-slide active">
+                <img src="https://via.placeholder.com/100" alt="Sarah M." class="testimonial-image">
+                <p class="testimonial-text">"খুব ভালো মানের ফার্নিচার! ডিজাইন আর ফিনিশিং দারুণ। ঘরের পরিবেশই বদলে গেছে।"</p>
+                <p class="testimonial-author">Jamal H.</p>
+            </div>
+<div class="testimonial-slide">
+    <img src="https://images.playground.com/f3f5ec69eecd4034a61c5ec64b806ed8.jpeg" alt="Rahim H." class="testimonial-image">
+    <p class="testimonial-text">"ডাইনিং টেবিল সেটটি নিয়ে খুবই খুশি। কাঠের গুণমান এবং কারুকাজ অসাধারণ!"</p>
+    <p class="testimonial-author">Rahim H.</p>
+</div>
+<div class="testimonial-slide">
+    <img src="https://via.placeholder.com/100" alt="Priya S." class="testimonial-image">
+    <p class="testimonial-text">"বেডরুম সেট কিনেছি, দেখতে যেমন সুন্দর তেমনি আরামদায়ক। সার্ভিসও খুব ভালো।"</p>
+    <p class="testimonial-author">Priya S.</p>
+</div>
+<div class="testimonial-slide">
+    <img src="https://via.placeholder.com/100" alt="Kamal M." class="testimonial-image">
+    <p class="testimonial-text">"অফিসের জন্য ফার্নিচার কিনেছি। প্রফেশনাল লুক পেয়েছি।"</p>
+    <p class="testimonial-author">Kamal M.</p>
+</div>
+<div class="testimonial-slide">
+    <img src="https://via.placeholder.com/100" alt="Nusrat F." class="testimonial-image">
+    <p class="testimonial-text">"বাচ্চাদের রুমের জন্য আসবাবপত্র কিনেছি। নিরাপদ, টেকসই আর দেখতে সুন্দর।"</p>
+    <p class="testimonial-author">Nusrat F.</p>
+</div>
+<div class="testimonial-slide">
+    <img src="https://images.playground.com/6ca572f475c24c67940324428d2d3755.jpeg" alt="Aziz R." class="testimonial-image">
+    <p class="testimonial-text">"কাস্টম ডিজাইনের বুকশেলফ বানিয়েছি। ঠিক যেমনটা চেয়েছিলাম তেমনটাই পেয়েছি।"</p>
+    <p class="testimonial-author">Aziz R.</p>
+</div>
+        </div>
+        <div class="carousel-nav">
+            <button id="prevBtn">Previous</button>
+            <button id="nextBtn">Next</button>
+        </div>
+    </section>    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo.png" alt="Kathuray Furnishers Logo">
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#catalogue">Catalogue</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Subscribe to Our Newsletter</h4>
+                    <form id="newsletter-form" class="newsletter-form">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+<div class="footer-social">
+    <h4>Follow Us</h4>
+    <div class="social-icons">
+        <a href="https://www.facebook.com/Kathurae/" aria-label="Follow us on Facebook"><i class="fab fa-facebook"></i></a>
+    </div>
+</div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2017 Kathuray Furnishers. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+<script src="functions/functions.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <script>
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Header animation
+        gsap.to("header", {
+            scrollTrigger: {
+                start: "top top",
+                end: "+=100",
+                scrub: true
+            },
+            backgroundColor: "rgba(255, 255, 255, 0.9)",
+            height: "60px"
+        });
+
+        // Hero section animations
+        gsap.to(".hero h1", { opacity: 1, y: 0, duration: 1, delay: 0.5 });
+        gsap.to(".hero p", { opacity: 1, y: 0, duration: 1, delay: 0.7 });
+        gsap.to(".cta-button", { opacity: 1, y: 0, duration: 1, delay: 0.9 });
+
+        // Timeline animations
+        gsap.utils.toArray(".timeline-item").forEach(item => {
+            gsap.to(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                },
+                opacity: 1,
+                y: 0,
+                duration: 1
+            });
+        });
+
+        // Feature comparison animation
+        gsap.from(".feature-table tr", {
+            scrollTrigger: {
+                trigger: ".feature-comparison",
+                start: "top 80%"
+            },
+            opacity: 0,
+            y: 50,
+            stagger: 0.2,
+            duration: 1
+        });
+
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentSlide = 0;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
+        nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
+
+        // Auto-advance slides every 5 seconds
+        setInterval(() => showSlide(currentSlide + 1), 5000);
+
+        setInterval(nextTestimonial, 5000);
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Parallax effect for animated background
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+
+            gsap.to('.animated-bg::before, .animated-bg::after', {
+                x: mouseX * 50,
+                y: mouseY * 50,
+                duration: 1
+            });
+        });
+
+        // Add a custom cursor
+        const cursor = document.createElement('div');
+        cursor.classList.add('custom-cursor');
+        document.body.appendChild(cursor);
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Hover effect for buttons and links
+        const interactiveElements = document.querySelectorAll('a, button');
+        interactiveElements.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+            });
+            element.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+            });
+        });
+    </script>
+</body>
+</html>

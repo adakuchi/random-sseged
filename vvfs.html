@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kathuray Furnishers - Luxury Redefined</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #f8f8f8;
+            --accent-color: #c9a57a;
+            --text-color: #333;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            color: var(--text-color);
+            background-color: var(--secondary-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style-type: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section Styles */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2700&q=80') no-repeat center center/cover;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            text-align: center;
+            color: var(--secondary-color);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 5px;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .cta-btn:hover {
+            background-color: var(--primary-color);
+        }
+
+        /* Collection Section Styles */
+        .collection {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-item {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .product-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            margin-bottom: 20px;
+        }
+
+        .product-price {
+            font-weight: 600;
+            color: var(--accent-color);
+            font-size: 20px;
+        }
+
+        /* About Section Styles */
+        .about {
+            padding: 100px 0;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .about-text {
+            flex: 1;
+            padding-right: 50px;
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateX(50px);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Contact Section Styles */
+        .contact {
+            padding: 100px 0;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Raleway', sans-serif;
+            font-size: 16px;
+        }
+
+        .form-group textarea {
+            height: 150px;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+            border: none;
+            border-radius: 5px;
+            font-family: 'Raleway', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            background-color: var(--primary-color);
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .footer-links ul {
+            list-style-type: none;
+            display: flex;
+        }
+
+        .footer-links ul li {
+            margin-right: 20px;
+        }
+
+        .footer-links ul li a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-social a {
+            color: var(--secondary-color);
+            font-size: 24px;
+            margin-left: 20px;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+
+            nav ul {
+                margin-top: 20px;
+            }
+
+            nav ul li {
+                margin-left: 0;
+                margin-right: 20px;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero p {
+                font-size: 20px;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-text {
+                padding-right: 0;
+                margin-bottom: 30px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+
+            .footer-logo, .footer-links, .footer-social {
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">Kathuray Furnishers</a>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#collection">Collection</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Luxury Redefined</h1>
+                <p>Elevate your space with our exquisite furniture collection</p>
+                <a href="#collection" class="cta-btn">Explore Collection</a>
+            </div>
+        </section>
+
+        <section id="collection" class="collection">
+            <div class="container">
+                <h2 class="section-title">Our Collection</h2>
+                <div class="product-grid">
+                    <!-- Product items will be dynamically added here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2 class="section-title">About Kathuray Furnishers</h2>
+                        <p>Since 2017, Kathuray Furnishers has been at the forefront of luxury furniture design and craftsmanship. Our passion for creating timeless pieces that blend innovation with tradition has made us a leader in the industry.</p>
+                        <p>Every item in our collection is a testament to superior quality and artistry, designed to elevate your living spaces and stand the test of time. Our dedicated team of artisans pours their expertise and creativity into each piece, ensuring that when you choose Kathuray, you're not just furnishing your home -- you're investing in beauty that lasts for generations.</p>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80" alt="Kathuray Furnishers Workshop">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title">Get in Touch</h2>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+<input type="email" id="email" name="email" required>
+</div>
+<div class="form-group">
+<label for="message">Message</label>
+<textarea id="message" name="message" required></textarea>
+</div>
+<button type="submit" class="submit-btn">Send Message</button>
+</form>
+</div>
+</section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo">Kathuray Furnishers</div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#collection">Collection</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Product data
+    const products = [
+        {
+            id: 'WGG089',
+            name: 'Mauve Opulence Sofa',
+            description: 'Indulge in luxury with our Mauve Opulence Sofa, a perfect blend of comfort and style.',
+            price: '$2,999',
+            image: 'images/lvs001.jpeg'
+        },
+        {
+            id: 'EEO285',
+            name: 'Marble Top Dining Table',
+            description: 'Elevate your dining experience with our exquisite Marble Top Dining Table.',
+            price: '$3,499',
+            image: 'https://th.bing.com/th/id/OIG2.LGfEUfv7GTQFxwrYNNE_?pid=ImgGn'
+        },
+        {
+            id: 'PPH271',
+            name: 'Tufted Leather Armchair',
+            description: 'Sink into luxury with our Tufted Leather Armchair, the epitome of sophistication.',
+            price: '$1,799',
+            image: 'https://th.bing.com/th/id/OIG2.V5CS8eySSivyBisD5Ykj?w=1024&h=1024&rs=1&pid=ImgDetMain'
+        }
+    ];
+
+    // Function to create product items
+    function createProductItem(product) {
+        return `
+            <div class="product-item">
+                <img src="${product.image}" alt="${product.name}" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">${product.name}</h3>
+                    <p class="product-description">${product.description}</p>
+                    <p class="product-price">${product.price}</p>
+                </div>
+            </div>
+        `;
+    }
+
+    // Populate product grid
+    const productGrid = document.querySelector('.product-grid');
+    products.forEach(product => {
+        productGrid.innerHTML += createProductItem(product);
+    });
+
+    // GSAP Animations
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero section animations
+    gsap.to('.hero h1', { opacity: 1, y: 0, duration: 1, delay: 0.5 });
+    gsap.to('.hero p', { opacity: 1, y: 0, duration: 1, delay: 0.7 });
+    gsap.to('.hero .cta-btn', { opacity: 1, y: 0, duration: 1, delay: 0.9 });
+
+    // Scroll animations
+    gsap.utils.toArray('.section-title').forEach(title => {
+        gsap.to(title, {
+            scrollTrigger: {
+                trigger: title,
+                start: 'top 80%',
+                end: 'bottom 20%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 1,
+            y: 0,
+            duration: 1
+        });
+    });
+
+    gsap.utils.toArray('.product-item').forEach(item => {
+        gsap.to(item, {
+            scrollTrigger: {
+                trigger: item,
+                start: 'top 80%',
+                end: 'bottom 20%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            delay: 0.2
+        });
+    });
+
+    gsap.to('.about-text', {
+        scrollTrigger: {
+            trigger: '.about-text',
+            start: 'top 80%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none reverse'
+        },
+        opacity: 1,
+        x: 0,
+        duration: 1
+    });
+
+    gsap.to('.about-image', {
+        scrollTrigger: {
+            trigger: '.about-image',
+            start: 'top 80%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none reverse'
+        },
+        opacity: 1,
+        x: 0,
+        duration: 1,
+        delay: 0.2
+    });
+
+    gsap.to('.contact-form', {
+        scrollTrigger: {
+            trigger: '.contact-form',
+            start: 'top 80%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none reverse'
+        },
+        opacity: 1,
+        y: 0,
+        duration: 1
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Form submission
+    const contactForm = document.querySelector('.contact-form');
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you for your message. We will get back to you soon!');
+        this.reset();
+    });
+</script>
+</html>
